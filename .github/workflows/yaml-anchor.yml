@@ -17,9 +17,7 @@ jobs:
           echo "API Endpoint: $API_URL"
   test:
     runs-on: ubuntu-latest
-    env: 
-      <<: *common_env
-      EXTRA_KEY: debug
+    env:  *common_env
     steps:
       - *print_step
       - name: Run test validation
