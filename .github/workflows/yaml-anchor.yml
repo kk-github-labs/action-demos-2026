@@ -6,23 +6,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
+    env: &common_env
       APP_ENV: staging
       API_URL: https://api.example.com
     steps:
-      - name: Print environment
+      - &print_step
+        name: Print environment
         run: |
           echo "Environment: $APP_ENV"
           echo "API Endpoint: $API_URL"
   test:
     runs-on: ubuntu-latest
-    env:
-      APP_ENV: staging
-      API_URL: https://api.example.com
+    env: *common_env
     steps:
-      - name: Print environment
-        run: |
-          echo "Environment: $APP_ENV"
-          echo "API Endpoint: $API_URL"
+      - *print_step
       - name: Run test validation
         run: echo "Test job verified using shared anchor config."
