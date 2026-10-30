@@ -7,11 +7,19 @@ jobs:
   runtime-demo:
     runs-on: ubuntu-latest
     steps:
-      # Anti-pattern: Manual network download, tar extraction, and manual PATH manipulation
-      - name: Manually download Node.js over internet
+      # Best practice: Setup action handles resolution, PATH, and caching natively
+      - name: Setup Node.js via toolcache
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Verify active Node runtime
         run: |
-          echo "Downloading Node.js from external network CDN..."
-          curl -sO https://nodejs.org/dist/v20.18.0/node-v20.18.0-linux-x64.tar.xz
-          tar -xf node-v20.18.0-linux-x64.tar.xz
-          export PATH="$PWD/node-v20.18.0-linux-x64/bin:$PATH"
-          echo "Installed: $(node --version)"
+          echo "Active Version: $(node --version)"
+          echo "Node Path: $(which node)"
+      # Core GH-200 Concept: The Toolcache directory
+      - name: Inspect runner toolcache filesystem
+        run: |
+          echo "Toolcache location: $RUNNER_TOOL_CACHE"
+          echo "Preinstalled Node versions on this runner image:"
+          ls -la "$RUNNER_TOOL_CACHE/node"
