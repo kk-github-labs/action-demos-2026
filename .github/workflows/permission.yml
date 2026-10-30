@@ -1,0 +1,14 @@
+name: Demo 08 - Token Permissions
+
+on:
+  workflow_dispatch:
+
+jobs:
+  unrestricted-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Inspect environment
+        run: echo "Job executing with default inherited permissions."
