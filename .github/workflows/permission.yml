@@ -12,6 +12,7 @@ jobs:
     # Core Rule 2: Job-level permissions REPAIR/REPLACE workflow permissions
     permissions:
       contents: read
+      issues: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
