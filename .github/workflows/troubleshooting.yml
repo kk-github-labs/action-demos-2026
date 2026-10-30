@@ -8,7 +8,7 @@ jobs:
     name: test (${{ matrix.target }})
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: true
+      #fail-fast: true
       matrix:
         target: [alpha, beta, gamma]
     steps:
