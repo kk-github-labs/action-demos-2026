@@ -1,4 +1,4 @@
-name: Demo 08 - Token Permissions
+name:  Token Permissions
 
 on:
   workflow_dispatch:
