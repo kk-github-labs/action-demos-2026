@@ -1,0 +1,16 @@
+name: Configure VS Code workflow authoring and schema validation
+
+on:
+push:
+    branches:
+      - main
+
+jobs:
+  build:
+    run-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Print GitHub Context
+        runs: echo "Triggered by ${{ github.actor }} on ref ${{ github.ref }}"
