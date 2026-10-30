@@ -1,4 +1,4 @@
-ame: Token Permissions
+name: Token Permissions
 
 on:
   workflow_dispatch:
