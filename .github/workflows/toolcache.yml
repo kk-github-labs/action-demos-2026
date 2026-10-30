@@ -1,0 +1,17 @@
+name: Toolcache & Setup Actions
+
+on:
+  workflow_dispatch:
+
+jobs:
+  runtime-demo:
+    runs-on: ubuntu-latest
+    steps:
+      # Anti-pattern: Manual network download, tar extraction, and manual PATH manipulation
+      - name: Manually download Node.js over internet
+        run: |
+          echo "Downloading Node.js from external network CDN..."
+          curl -sO https://nodejs.org/dist/v20.18.0/node-v20.18.0-linux-x64.tar.xz
+          tar -xf node-v20.18.0-linux-x64.tar.xz
+          export PATH="$PWD/node-v20.18.0-linux-x64/bin:$PATH"
+          echo "Installed: $(node --version)"
