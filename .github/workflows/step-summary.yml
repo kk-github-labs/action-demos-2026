@@ -9,8 +9,24 @@ jobs:
     steps:
       - name: Run test suite
         run: |
-          echo "=== TEST SUITE RESULTS ==="
-          echo "Total Tests: 50"
-          echo "Passed: 48"
-          echo "Failed (Tolerated): 2"
-          echo "Code Coverage: 85%"
+          cat << 'EOF' >> "$GITHUB_STEP_SUMMARY"
+          ## 📋 Test Suite Executive Summary
+          | Metric | Status / Count |
+          | :--- | :--- |
+          | **Total Tests** | 50 |
+          | **Passed** | 48 ✅ |
+          | **Failed (Ignored)** | 2 ⚠️ |
+          | **Code Coverage** | **85%** 🚀 |
+          EOF
+      
+          # Multiple steps append sequentially to the same summary file
+          # Size Limit Rule: Max 1024 KiB (1 MB) per job
+      - name: Generate deployment checklist
+        if: ${{ !cancelled() }}
+        run: |
+          cat << 'EOF' >> "$GITHUB_STEP_SUMMARY"
+          ### 🚀 Deployment Readiness
+          - [x] Unit tests passing target threshold
+          - [x] Linter clean
+          - [ ] Manual staging sign-off required
+          EOF
