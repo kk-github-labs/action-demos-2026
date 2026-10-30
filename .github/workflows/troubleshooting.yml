@@ -6,9 +6,9 @@ on:
 jobs:
   matrix-test:
     name: test (${{ matrix.target }})
-    fail-fast: false
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         target: [alpha, beta, gamma]
     steps:
