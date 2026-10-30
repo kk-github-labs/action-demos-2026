@@ -14,7 +14,8 @@ jobs:
     steps:
       - name: Execute target test
         run: |
-          echo "Executing test for target: ${{ matrix.target }}"
+          echo "Executing test for target: ${{ matrix.target }}!"
+
           # Simulate failure ONLY on target 'beta'
           if [ "${{ matrix.target }}" = "beta" ]; then
             echo "::error::Target 'beta' encountered a fatal crash!"
